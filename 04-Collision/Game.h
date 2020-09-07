@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <Windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -20,9 +20,9 @@ public:
 
 typedef CKeyEventHandler * LPKEYEVENTHANDLER;
 
-class CGame
+class Game
 {
-	static CGame * __instance;
+	static Game * __instance;
 	HWND hWnd;									// Window handle
 
 	LPDIRECT3D9 d3d = NULL;						// Direct3D handle
@@ -71,9 +71,13 @@ public:
 
 	void SetCamPos(float x, float y) { cam_x = x; cam_y = y; }
 
-	static CGame * GetInstance();
+	HWND GetWindowHandle();
 
-	~CGame();
+	static Game * GetInstance();
+
+	bool CheckAABB(float b1Left, float b1Top, float b1Right, float b1Bottom, float b2Left, float b2Top, float b2Right, float b2Bottom); // Hàm để check các va chạm
+
+	~Game();
 };
 
 

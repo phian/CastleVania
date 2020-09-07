@@ -1,7 +1,8 @@
 #include "Game.h"
 #include "debug.h"
+#include "GSprite.h"
 
-CGame * CGame::__instance = NULL;
+Game * Game::__instance = NULL;
 
 /*
 	Initialize DirectX, create a Direct3D device for rendering within the window, initial Sprite library for 
@@ -9,7 +10,7 @@ CGame * CGame::__instance = NULL;
 	- hInst: Application instance handle
 	- hWnd: Application window handle
 */
-void CGame::Init(HWND hWnd)
+void Game::Init(HWND hWnd)
 {
 	LPDIRECT3D9 d3d = Direct3DCreate9(D3D_SDK_VERSION);
 
@@ -55,7 +56,7 @@ void CGame::Init(HWND hWnd)
 /*
 	Utility function to wrap LPD3DXSPRITE::Draw 
 */
-void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha)
+void Game::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha)
 {
 	D3DXVECTOR3 p(floor(x - cam_x), floor(y - cam_y), 0);
 	RECT r; 
@@ -66,12 +67,12 @@ void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top
 	spriteHandler->Draw(texture, &r, NULL, &p, D3DCOLOR_ARGB(alpha, 255, 255, 255));
 }
 
-int CGame::IsKeyDown(int KeyCode)
+int Game::IsKeyDown(int KeyCode)
 {
 	return (keyStates[KeyCode] & 0x80) > 0;
 }
 
-void CGame::InitKeyboard(LPKEYEVENTHANDLER handler)
+void Game::InitKeyboard(LPKEYEVENTHANDLER handler)
 {
 	HRESULT
 		hr = DirectInput8Create
@@ -140,7 +141,7 @@ void CGame::InitKeyboard(LPKEYEVENTHANDLER handler)
 	DebugOut(L"[INFO] Keyboard has been initialized successfully\n");
 }
 
-void CGame::ProcessKeyboard()
+void Game::ProcessKeyboard()
 {
 	HRESULT hr; 
 
@@ -190,7 +191,7 @@ void CGame::ProcessKeyboard()
 	}
 }
 
-CGame::~CGame()
+Game::~Game()
 {
 	if (spriteHandler != NULL) spriteHandler->Release();
 	if (backBuffer != NULL) backBuffer->Release();
@@ -201,7 +202,7 @@ CGame::~CGame()
 /*
 	SweptAABB 
 */
-void CGame::SweptAABB(
+void Game::SweptAABB(
 	float ml, float mt,	float mr, float mb,			
 	float dx, float dy,			
 	float sl, float st, float sr, float sb,
@@ -299,8 +300,18 @@ void CGame::SweptAABB(
 
 }
 
-CGame *CGame::GetInstance()
+Game *Game::GetInstance()
 {
-	if (__instance == NULL) __instance = new CGame();
+	if (__instance == NULL) __instance = new Game();
 	return __instance;
+}
+
+HWND Game::GetWindowHandle()
+{
+	return hWnd;
+}
+
+bool Game::CheckAABB(float b1Left, float b1Top, float b1Right, float b1Bottom, float b2Left, float b2Top, float b2Right, float b2Bottom)
+{
+	return !(b1Right < b2Left || b1Left > b2Right || b1Top > b2Bottom || b1Bottom < b2Top);
 }

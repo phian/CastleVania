@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include <d3dx9.h>
+#include"define.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ public:
 	CTextures();
 	void Add(int id, LPCWSTR filePath, D3DCOLOR transparentColor);
 	LPDIRECT3DTEXTURE9 Get(unsigned int i);
+	void AddResources();
 
 	static CTextures * GetInstance();
 };

@@ -122,25 +122,67 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="BoardHealth.h" />
     <ClInclude Include="Brick.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Dagger.h" />
     <ClInclude Include="debug.h" />
+    <ClInclude Include="define.h" />
+    <ClInclude Include="DSUtil.h" />
+    <ClInclude Include="DXUtil.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Goomba.h" />
+    <ClInclude Include="GSprite.h" />
+    <ClInclude Include="GTexture.h" />
+    <ClInclude Include="Helicopter.h" />
+    <ClInclude Include="IntroBat.h" />
     <ClInclude Include="Mario.h" />
+    <ClInclude Include="MorningStar.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneGame.h" />
+    <ClInclude Include="SceneIntro.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Simon.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Sprites.h" />
+    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Textures.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="BoardHealth.cpp" />
     <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Dagger.cpp" />
     <ClCompile Include="debug.cpp" />
+    <ClCompile Include="define.cpp" />
+    <ClCompile Include="DSUtil.cpp" />
+    <ClCompile Include="DXUtil.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Goomba.cpp" />
+    <ClCompile Include="GSprite.cpp" />
+    <ClCompile Include="GTexture.cpp" />
+    <ClCompile Include="Helicopter.cpp" />
+    <ClCompile Include="IntroBat.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="MorningStar.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneGame.cpp" />
+    <ClCompile Include="SceneIntro.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Simon.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprites.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Textures.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

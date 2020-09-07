@@ -38,13 +38,13 @@
 #define MARIO_UNTOUCHABLE_TIME 5000
 
 
-class CMario : public CGameObject
+class CMario : public GameObject
 {
 	int level;
 	int untouchable;
 	DWORD untouchable_start;
 public: 
-	CMario() : CGameObject()
+	CMario() : GameObject()
 	{
 		level = MARIO_LEVEL_BIG;
 		untouchable = 0;

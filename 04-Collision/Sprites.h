@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <d3dx9.h>
 #include <unordered_map>
+#include<vector>
 
 using namespace std;
 
@@ -31,11 +32,15 @@ class CSprites
 	static CSprites * __instance;
 
 	unordered_map<int, LPSPRITE> sprites;
+	vector<CSprite> sprites1;
+
 
 public:
 	void Add(int id, int left, int top, int right, int bottom, LPDIRECT3DTEXTURE9 tex);
 	LPSPRITE Get(int id);
 	LPSPRITE &operator[](int id) {return sprites[id];}
+	void InitSprites();
+	void AddRersources();
 
 	static CSprites * GetInstance();
 };
@@ -79,6 +84,7 @@ class CAnimations
 public:
 	void Add(int id, LPANIMATION ani);
 	LPANIMATION Get(int id);
+	void AddResources();
 
 	static CAnimations * GetInstance();
 };

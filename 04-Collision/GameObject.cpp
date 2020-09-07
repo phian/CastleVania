@@ -1,4 +1,4 @@
-#include <d3dx9.h>
+﻿#include <d3dx9.h>
 #include <algorithm>
 
 
@@ -8,24 +8,118 @@
 #include "GameObject.h"
 #include "Sprites.h"
 
-CGameObject::CGameObject()
+GameObject::GameObject()
 {
 	x = y = 0;
 	vx = vy = 0;
 	nx = 1;	
+	_direction = 1; // Ban đầu mặc định là đi qua phải
 }
 
-void CGameObject::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
+void GameObject::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	this->dt = dt;
 	dx = vx*dt;
 	dy = vy*dt;
 }
 
+void GameObject::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+{
+	left = x;
+	top = y;
+	right = left + gameTexture->GetFrameWidth();
+	bottom = top + gameTexture->GetFrameHeight();
+}
+
+void GameObject::SetDirection(int direction)
+{
+	_direction = direction;
+}
+
+int GameObject::GetDirection()
+{
+	return _direction;
+}
+
+void GameObject::SetPosition(float X, float Y)
+{
+	x = Y;
+	y = Y;
+}
+
+void GameObject::GetPosition(float& X, float& Y)
+{
+	X = this->x;
+	Y = this->y;
+}
+
+void GameObject::SetSpeed(float VX, float VY)
+{
+	this->vx = VX;
+	this->vy = VY;
+}
+
+float GameObject::GetX()
+{
+	return x;
+}
+
+float GameObject::GetY()
+{
+	return y;
+}
+
+float GameObject::GetVx()
+{
+	return vx;
+}
+
+float GameObject::GetVy()
+{
+	return vy;
+}
+
+// Toạ độ của object
+void GameObject::SetX(float X)
+{
+	x = X;
+}
+
+// Toạ độ của object
+void GameObject::SetY(float Y)
+{
+	y = Y;
+}
+
+void GameObject::SetVx(float VX)
+{
+	vx = VX;
+}
+
+void GameObject::SetVy(float VY)
+{
+	vy = VY;
+}
+
+int GameObject::GetFrameHeight()
+{
+	return gameTexture->GetFrameHeight();
+}
+
+int GameObject::GetFrameWidth()
+{
+	return gameTexture->GetFrameWidth();
+}
+
+oType GameObject::GetType()
+{
+	return ObjectType;
+}
+
 /*
 	Extension of original SweptAABB to deal with two moving objects
 */
-LPCOLLISIONEVENT CGameObject::SweptAABBEx(LPGAMEOBJECT coO)
+LPCOLLISIONEVENT GameObject::SweptAABBEx(LPGAMEOBJECT coO)
 {
 	float sl, st, sr, sb;		// static object bbox
 	float ml, mt, mr, mb;		// moving object bbox
@@ -45,14 +139,14 @@ LPCOLLISIONEVENT CGameObject::SweptAABBEx(LPGAMEOBJECT coO)
 
 	GetBoundingBox(ml, mt, mr, mb);
 
-	CGame::SweptAABB(
+	Game::SweptAABB(
 		ml, mt, mr, mb,
 		dx, dy,
 		sl, st, sr, sb,
 		t, nx, ny
 	);
 
-	CCollisionEvent * e = new CCollisionEvent(t, nx, ny, coO);
+	CollisionEvent * e = new CollisionEvent(t, nx, ny, coO);
 	return e;
 }
 
@@ -62,7 +156,7 @@ LPCOLLISIONEVENT CGameObject::SweptAABBEx(LPGAMEOBJECT coO)
 	coObjects: the list of colliable objects
 	coEvents: list of potential collisions
 */
-void CGameObject::CalcPotentialCollisions(
+void GameObject::CalcPotentialCollisions(
 	vector<LPGAMEOBJECT> *coObjects, 
 	vector<LPCOLLISIONEVENT> &coEvents)
 {
@@ -76,10 +170,10 @@ void CGameObject::CalcPotentialCollisions(
 			delete e;
 	}
 
-	std::sort(coEvents.begin(), coEvents.end(), CCollisionEvent::compare);
+	std::sort(coEvents.begin(), coEvents.end(), CollisionEvent::compare);
 }
 
-void CGameObject::FilterCollision(
+void GameObject::FilterCollision(
 	vector<LPCOLLISIONEVENT> &coEvents,
 	vector<LPCOLLISIONEVENT> &coEventsResult,
 	float &min_tx, float &min_ty, 
@@ -100,45 +194,83 @@ void CGameObject::FilterCollision(
 		LPCOLLISIONEVENT c = coEvents[i];
 
 		if (c->t < min_tx && c->nx != 0) {
-			min_tx = c->t; nx = c->nx; min_ix = i;
+			min_tx = c->t; 
+			nx = c->nx; 
+			min_ix = i;
 		}
 
 		if (c->t < min_ty  && c->ny != 0) {
-			min_ty = c->t; ny = c->ny; min_iy = i;
+			min_ty = c->t; 
+			ny = c->ny;
+			min_iy = i;
 		}
 	}
 
-	if (min_ix>=0) coEventsResult.push_back(coEvents[min_ix]);
-	if (min_iy>=0) coEventsResult.push_back(coEvents[min_iy]);
+	if (min_ix >= 0) coEventsResult.push_back(coEvents[min_ix]);
+	if (min_iy >= 0) coEventsResult.push_back(coEvents[min_iy]);
 }
 
-
-void CGameObject::RenderBoundingBox()
+// Hàm để kiểm tra va chạm bằng AABB và Sweept AABB
+bool GameObject::IsObjectCollisionWithObject(GameObject* object)
 {
-	D3DXVECTOR3 p(x, y, 0);
-	RECT rect;
+	// Kiểm tra bằng Sweept AABB trước tiên
+	if (CheckAABB(object))
+		return true;
 
-	LPDIRECT3DTEXTURE9 bbox = CTextures::GetInstance()->Get(ID_TEX_BBOX);
+	LPCOLLISIONEVENT collisionEvent = SweptAABBEx(object); // Kiểm tra xem 2 object có đang va chạm bằng Swept AABB
+	bool result = collisionEvent->t > 0 && collisionEvent->t <= 1.0f; // Điều kiện để các object va chạm
+	SAFE_DELETE(collisionEvent);
+	return result;
+}
 
-	float l,t,r,b; 
+bool GameObject::CheckAABB(GameObject* object)
+{
+	float left, top, right, bottom;
+	float left1, top1, right1, bottom1;
 
+	this->GetBoundingBox(left, top, right, bottom);
+	object->GetBoundingBox(left1, top1, right1, bottom1);
+
+	if (Game::GetInstance()->CheckAABB(left, top, right, bottom, left1, top1, right1, bottom1))
+		return true;
+	return false;
+}
+
+void GameObject::SetTexture(GTexture* texture)
+{
+	this->gameTexture = texture;
+	objectSprite->texture = texture;
+}
+
+GSprite* GameObject::GetSprite()
+{
+	return objectSprite;
+}
+
+void GameObject::RenderBoundingBox(Camera* camera)
+{
+	float l, t, r, b;
 	GetBoundingBox(l, t, r, b);
+	RECT rect;
 	rect.left = 0;
 	rect.top = 0;
-	rect.right = (int)r - (int)l;
-	rect.bottom = (int)b - (int)t;
+	rect.right = (LONG)r - (LONG)l;
+	rect.bottom = (LONG)b - (LONG)t;
 
-	CGame::GetInstance()->Draw(x, y, bbox, rect.left, rect.top, rect.right, rect.bottom, 32);
+	D3DXVECTOR2 position = camera->Transform(l, t);
+
+	Game::GetInstance()->Draw(x, y, TextureManager::GetInstance()->GetTexture(oType::RENDERBBOX)->Texture, rect.left, rect.top, rect.right, rect.bottom, 90);
 }
 
-void CGameObject::AddAnimation(int aniId)
+void GameObject::AddAnimation(int aniId)
 {
 	LPANIMATION ani = CAnimations::GetInstance()->Get(aniId);
 	animations.push_back(ani);
 }
 
 
-CGameObject::~CGameObject()
+GameObject::~GameObject()
 {
-
+	// Ko thể xoá texture vì Texture là dùng chung và dc quản lý bởi TextureManager
+	SAFE_DELETE(objectSprite);
 }

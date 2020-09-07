@@ -1,0 +1,17 @@
+8
+1 41 -1 167 308 0 0 0
+2 41 -1 431 308 0 0 0
+3 41 -1 685 308 0 0 0
+4 41 -1 930 308 0 0 0
+5 41 -1 1197 308 0 0 0
+6 21 -1 0 370 1536 32 4
+7 42 -1 1383 366 10 5 0 
+8 42 -1 1441 354 30 14 0
+
+
+
+// 21 là Brick
+// id 7: object hidden -> vao cua
+// id 8: object hidden -> money 
+
+# Phan nao khong can thiet thi dien so 0

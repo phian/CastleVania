@@ -5,49 +5,142 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="Framework">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
+    <Filter Include="Framework\Animation">
+      <UniqueIdentifier>{2aae6ee5-f9c2-4cb8-a3f7-32e42e14d024}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Define">
+      <UniqueIdentifier>{14825762-7c48-4a05-b911-dceaf6524004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene">
+      <UniqueIdentifier>{1c6f835c-2bc0-4d88-96aa-700b75968922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Camera">
+      <UniqueIdentifier>{8d8209d9-e192-4444-87b0-906c6b5b702b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\SceneIntro">
+      <UniqueIdentifier>{1d9c1772-51ff-4519-8a56-d1c57bbb139d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Framework\Sound">
+      <UniqueIdentifier>{6e832332-b3a8-4ad9-b65a-ec9d73691297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Board">
+      <UniqueIdentifier>{4f113c8b-0e73-4733-99fe-6f1c4db70d56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Board\Font">
+      <UniqueIdentifier>{0212238b-4228-4007-ac5c-c7c4000217da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{34c13ed8-f4e0-4b3b-a9e4-b6471bf6c26d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Ground">
+      <UniqueIdentifier>{6f349b9b-096e-4e21-b5c2-84fca690f50b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Weapon">
+      <UniqueIdentifier>{3ed83da2-8d81-48b2-8640-d81a1cbb2280}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Debug">
+      <UniqueIdentifier>{1d38a812-0539-4b36-a1c4-d59dbc20e7b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="debug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Mario.h">
-      <Filter>Header Files</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Sprites.h">
-      <Filter>Header Files</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Textures.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Brick.h">
-      <Filter>Header Files</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Goomba.h">
-      <Filter>Header Files</Filter>
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="GSprite.h">
+      <Filter>Framework\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="GTexture.h">
+      <Filter>Framework\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Framework\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>Framework\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Framework\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Framework\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Framework\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Helicopter.h">
+      <Filter>Framework\Scene\SceneIntro</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroBat.h">
+      <Filter>Framework\Scene\SceneIntro</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneIntro.h">
+      <Filter>Framework\Scene\SceneIntro</Filter>
+    </ClInclude>
+    <ClInclude Include="Simon.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="DSUtil.h">
+      <Filter>Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUtil.h">
+      <Filter>Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Framework\Board\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Framework\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
+      <Filter>Object\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGame.h">
+      <Filter>Framework\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardHealth.h">
+      <Filter>Framework\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="Dagger.h">
+      <Filter>Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>Framework\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="MorningStar.h">
+      <Filter>Object\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="debug.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -62,11 +155,80 @@
     <ClCompile Include="Textures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Brick.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Goomba.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GSprite.cpp">
+      <Filter>Framework\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="GTexture.cpp">
+      <Filter>Framework\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Framework\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="define.cpp">
+      <Filter>Framework\Define</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Framework\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Framework\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Framework\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Helicopter.cpp">
+      <Filter>Framework\Scene\SceneIntro</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroBat.cpp">
+      <Filter>Framework\Scene\SceneIntro</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneIntro.cpp">
+      <Filter>Framework\Scene\SceneIntro</Filter>
+    </ClCompile>
+    <ClCompile Include="Simon.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="DSUtil.cpp">
+      <Filter>Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUtil.cpp">
+      <Filter>Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Framework\Board\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Framework\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>Object\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGame.cpp">
+      <Filter>Framework\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="BoardHealth.cpp">
+      <Filter>Framework\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="Dagger.cpp">
+      <Filter>Object\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="debug.cpp">
+      <Filter>Framework\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Object\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="MorningStar.cpp">
+      <Filter>Object\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

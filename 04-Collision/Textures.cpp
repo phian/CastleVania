@@ -30,7 +30,7 @@ void CTextures::Add(int id, LPCWSTR filePath, D3DCOLOR transparentColor)
 		return;
 	}
 
-	LPDIRECT3DDEVICE9 d3ddv = CGame::GetInstance()->GetDirect3DDevice();
+	LPDIRECT3DDEVICE9 d3ddv = Game::GetInstance()->GetDirect3DDevice();
 	LPDIRECT3DTEXTURE9 texture;
 
 	result = D3DXCreateTextureFromFileEx(
@@ -63,6 +63,16 @@ void CTextures::Add(int id, LPCWSTR filePath, D3DCOLOR transparentColor)
 LPDIRECT3DTEXTURE9 CTextures::Get(unsigned int i) 
 {
 	return textures[i];
+}
+
+void CTextures::AddResources() 
+{
+	Add(ID_TEX_MARIO, L"textures\\mario.png", D3DCOLOR_XRGB(255, 255, 255));
+	Add(ID_TEX_MISC, L"Resources\\ground\\2.png", D3DCOLOR_XRGB(176, 224, 248));
+	Add(ID_TEX_ENEMY, L"textures\\enemies.png", D3DCOLOR_XRGB(3, 26, 110));
+
+
+	Add(ID_TEX_BBOX, L"textures\\bbox.png", D3DCOLOR_XRGB(255, 255, 255));
 }
 
 

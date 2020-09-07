@@ -9,7 +9,7 @@
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	// Calculate dx, dy 
-	CGameObject::Update(dt);
+	GameObject::Update(dt);
 
 	// Simple fall down
 	vy += MARIO_GRAVITY*dt;
@@ -129,7 +129,7 @@ void CMario::Render()
 
 void CMario::SetState(int state)
 {
-	CGameObject::SetState(state);
+	GameObject::SetState(state);
 
 	switch (state)
 	{
